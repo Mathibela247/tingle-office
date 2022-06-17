@@ -1,0 +1,23 @@
+<div class="form-control w-full max-w-xs">
+  <label class="label"><span class="label-text">What's your PERSAL and Identity number?</span></label>
+  
+        <label class="label"><span class="label-text">Identity Number:</span></label>
+    <div class="my-4">
+        <%= f.number_field :identity_number, class: "input input-bordered w-full" %>
+    </div>
+    <label class="label"><span class="label-text">PERSAL Number:</span></label>
+    <div class="my-4">
+        <%= f.number_field :persal_number, class: "input input-bordered w-full" %>
+    </div>
+        <label class="label"><span class="label-text">Date of Birth:</span></label>
+    <div class="my-4">
+        <%= f.date_field :dob, class: "input input-bordered w-full" %>
+    </div>
+    <label class="label"><span class="label-text">Disability:</span></label>
+    <div class="my-4">
+        <label class="label"><span class="label-text">Yes:</span></label>
+        <%= f.radio_button :disability, 'Yes', class: "input input-bordered" %>
+        <label class="label"><span class="label-text">No:</span></label>
+        <%= f.radio_button :disability, 'No', class: "input input-bordered" %>
+    </div>
+</div>

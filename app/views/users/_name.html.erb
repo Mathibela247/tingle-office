@@ -1,0 +1,28 @@
+<div class="form-control w-full max-w-xs">
+  <label class="label"><span class="label-text">What's your name and lastname?</span></label>
+  
+        <label class="label"><span class="label-text">Title:</span></label>
+    <div class="my-4">
+        <%= f.select :title_id, Title.all.collect{ |p| [ p.name, p.id ] }, include_blank: true, class: "input input-bordered w-full" %>
+    </div>
+        <label class="label"><span class="label-text">Name:</span></label>
+    <div class="my-4">
+        <%= f.text_field :name, class: "input input-bordered w-full" %>
+    </div>
+    <label class="label"><span class="label-text">Initials:</span></label>
+    <div class="my-4">
+        <%= f.text_field :initials, class: "input input-bordered w-full" %>
+    </div>
+        <label class="label"><span class="label-text">Lastname:</span></label>
+    <div class="my-4">
+        <%= f.text_field :lastname, class: "input input-bordered w-full" %>
+    </div>
+    <label class="label"><span class="label-text">Gender:</span></label>
+    <div class="my-4">
+        <%= f.select :gender_id, Gender.all.collect{ |p| [ p.name, p.id ] }, include_blank: true, class: "input input-bordered w-full" %>
+    </div>
+    <label class="label"><span class="label-text">Race:</span></label>
+    <div class="my-4">
+        <%= f.select :race_id, Race.all.collect{ |p| [ p.name, p.id ] }, include_blank: true, class: "input input-bordered w-full" %>
+    </div>
+</div>
