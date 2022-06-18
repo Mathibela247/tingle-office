@@ -8,6 +8,8 @@
     <%= link_to 'New organization unit', new_organization_unit_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
+<%= render partial: "organization_units/form", locals: { organization_unit: OrganizationUnit.new } %>
+
   <div id="organization_units" class="min-w-full">
     <%= render @organization_units %>
   </div>
