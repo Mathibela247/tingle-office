@@ -1,0 +1,2 @@
+api: bundle exec rails server –p 3002
+web: yarn start

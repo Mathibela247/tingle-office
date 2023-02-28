@@ -1,0 +1,50 @@
+<%= form_with(model: submission, class: "contents") do |form| %>
+
+  <% if submission.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(submission.errors.count, "error") %> prohibited this submission from being saved:</h2>
+
+      <ul>
+        <% submission.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+    <%= form.number_field :appointment_id %>
+  <div class="my-5">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :purpose %>
+    <%= form.text_area :purpose, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", rows: 15, cols: 15 %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :background %>
+    <%= form.text_area :background, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", rows: 15, cols: 50 %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :discussion %>
+    <%= form.text_area :discussion, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", rows: 15, cols: 15 %>
+  </div>
+
+  <div class="inline">
+   <%= link_to "Cancel", submissions_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+<% end %>
+ <script>
+    tinymce.init({
+      selector: 'textarea',
+      plugins: 'a11ychecker advcode casechange export formatpainter image editimage linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tableofcontents tinycomments tinymcespellchecker',
+      toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter image editimage pageembed permanentpen table tableofcontents',
+      toolbar_mode: 'floating',
+      tinycomments_mode: 'embedded',
+      tinycomments_author: 'Author name',
+    });
+  </script>

@@ -4,10 +4,20 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  enum role: %i[user admin]       
+  
+  has_one_attached :avatar do |attachable|
+    attachable.variant :thumb, resize_to_limit: [100, 100]
+    attachable.variant :medium, resize_to_limit: [300, 300]
+  end
+
 #broadcasts_to ->(user) { :users }
   belongs_to :race, optional: true
   belongs_to :gender, optional: true
   belongs_to :title, optional: true
+  belongs_to :organization, optional: true
+  has_many :appointments
+  has_many :submissions
 
 
   PROFILE_FIELDS = %i[name persal_number address].freeze

@@ -1,3 +1,4 @@
 class OrganizationType < ApplicationRecord
-    has_one :organization_unit
+    has_one :post
+    has_many :organization
 end

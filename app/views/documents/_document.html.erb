@@ -1,0 +1,26 @@
+<div id="<%= dom_id document %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Title:</strong>
+    <%= document.title %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Content:</strong>
+    <%= document.content %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Docs:</strong>
+    <% if document.docs.attached? %>
+      <% document.docs.each do |doc| %>
+        <div><%= image_tag doc, width: "200px" %></div>
+      <% end %>
+    <% end %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this document", document, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this document', edit_document_path(document), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

@@ -1,0 +1,37 @@
+<div id="<%= dom_id appointment %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Post:</strong>
+    <%= appointment.post.post_name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">User:</strong>
+    <%= appointment.user.email %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Start date:</strong>
+    <%= appointment.start_date %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">End date:</strong>
+    <%= appointment.end_date %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Appointment status:</strong>
+    <%= appointment.appointment_status.name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Isactive:</strong>
+    <%= appointment.isactive %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this appointment", appointment, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this appointment', edit_appointment_path(appointment), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

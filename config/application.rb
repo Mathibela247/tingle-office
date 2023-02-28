@@ -11,6 +11,17 @@ module Tingle
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
+
+    # Auto-load API and its subdirectories
+    config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
+    config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
+    
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', headers: :any, methods: [:get, :post, :put, :delete, :options]
+      end
+    end
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

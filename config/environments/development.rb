@@ -16,6 +16,7 @@ Rails.application.configure do
 
   # Enable server timing
   config.server_timing = true
+  
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
@@ -35,6 +36,8 @@ Rails.application.configure do
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
+
+  config.active_storage.replace_on_assign_to_many = false
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false

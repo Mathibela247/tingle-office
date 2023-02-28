@@ -1,12 +1,19 @@
 ActiveAdmin.register User do
-  permit_params :email, :password, :password_confirmation
+  permit_params :email, :password, :password_confirmation, :email, :name, :initials, :lastname, :title_id, :gender_id, :race_id, :organization_id
+  
 
   index do
     selectable_column
     id_column
     column :email
+    column :name
+    column :initials
+    column :lastname
+    column :title.name
+    column :gender.name
+    column :race.name
+    column :organization.name
     column :current_sign_in_at
-    column :sign_in_count
     column :created_at
     actions
   end
@@ -33,6 +40,7 @@ ActiveAdmin.register User do
       f.input :mobile_number
       f.input :city
       f.input :zip
+      f.select :organization_id, Organization.all.collect{ |p| [ p.name, p.id ] }
     end
     f.actions
   end

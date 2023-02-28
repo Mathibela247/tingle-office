@@ -1,6 +1,6 @@
 <div class="form-control w-full max-w-xs">
-  <label class="label"><span class="label-text">What's your name and lastname?</span></label>
-  
+  <label class="label">
+    <span class="label-text">What's your name and lastname?</span></label><br />
         <label class="label"><span class="label-text">Title:</span></label>
     <div class="my-4">
         <%= f.select :title_id, Title.all.collect{ |p| [ p.name, p.id ] }, include_blank: true, class: "input input-bordered w-full" %>
@@ -24,5 +24,8 @@
     <label class="label"><span class="label-text">Race:</span></label>
     <div class="my-4">
         <%= f.select :race_id, Race.all.collect{ |p| [ p.name, p.id ] }, include_blank: true, class: "input input-bordered w-full" %>
+    </div>
+    <div class="my-4">
+    <%= f.file_field :avatar, class: "input input-bordered w-full" %>
     </div>
 </div>

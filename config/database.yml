@@ -12,6 +12,9 @@ default: &default
   password: 
   host: 127.0.0.1
 
+variables:
+  sql_mode: only_full_group_by
+
 development:
   <<: *default
   database: tingle_development

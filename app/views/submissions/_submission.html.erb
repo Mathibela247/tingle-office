@@ -1,0 +1,63 @@
+<%= turbo_frame_tag "submission_#{submission.id}" do %>
+<div> 
+    <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+        <div class="border-t border-gray-200">
+            <dl>
+                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"><%= link_to submission.title, 
+                                                                                                            submission_path(submission),
+                                                                                                            data: { turbo_frame: "_top" } %>
+                </div>
+                <div class="bg-white px-4 py-5 sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm font-medium text-gray-500">Purpose of this submission is</dt>
+                    <dd class="bg-white px-4 py-5 sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <%= submission.purpose %>
+                    </dd>
+                </div>
+                <div class="bg-white px-4 py-5 sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm font-medium text-gray-500">The background of is</dt>
+                    <dd class="bg-gray-50 px-4 py-5 sm:grid sm:gap-4 sm:px-6">
+                            <%= submission.background %>
+                    </dd>
+                </div>
+                <div class="bg-white px-4 py-5 sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm font-medium text-gray-500">The background of is</dt>
+                    <dd class="bg-gray-50 px-4 py-5 sm:grid sm:gap-4 sm:px-6">
+                            <%= submission.discussion %>
+                    </dd>
+                </div>   
+
+                <div class="bg-white px-4 py-5 sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <strong class="block font-medium mb-1">Documents:</strong>
+                    <ul>
+                    <% if submission.docs.attached? %>
+                        <% submission.docs.each do |file| %>
+                            <li>
+                            <% if file.representable? %>
+                                <%= image_tag file.representation(resize_to_limit: [100, 100]) %>
+                            <% else %>
+                                <%= link_to rails_blob_path(file, disposition: "attachment") do %>
+                                <%= image_tag "placeholder.png", alt: "Download file" %>
+                                <% end %>
+                            <% end %>
+                            </li>
+                        <% end %>
+                    <% end %>
+                    </ul>
+                </div> 
+            </dl>
+            <dl>
+                    <%= button_to "Delete",
+                                        submission_path(submission),
+                                        method: :delete, 
+                                        form: { data: { turbo_frame: "_top" } },
+                                        class: "btn btn--light" %>
+                    <%= link_to "Edit",
+                                    edit_submission_path(submission),
+                                    class: "inline-block cursor-pointer rounded-md bg-gray-800 px-4 py-3 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-gray-900 mr-4" %>
+                
+            </dl>
+        </div>
+    </div>  
+</div>      
+<% end %>

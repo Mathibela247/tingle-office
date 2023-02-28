@@ -1,0 +1,42 @@
+<div id="<%= dom_id organization %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Name:</strong>
+    <%= organization.name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Organization type:</strong>
+    <%= organization.organization_type.name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Contact person:</strong>
+    <%= organization.contact_person %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Physical address:</strong>
+    <%= organization.physical_address %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">City:</strong>
+    <%= organization.city %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Province:</strong>
+    <%= organization.province %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Telephone:</strong>
+    <%= organization.telephone %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this organization", organization, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this organization', edit_organization_path(organization), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

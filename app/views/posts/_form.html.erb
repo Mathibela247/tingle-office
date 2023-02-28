@@ -1,0 +1,46 @@
+<div class="max-w-2xl mx-auto bg-white p-16">
+  <%= form_with(model: post, class: "contents") do |form| %>
+    <div class="grid gap-6 mb-6 lg:grid-cols-2">
+    <% if post.errors.any? %>
+      <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+        <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+        <ul>
+          <% post.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div>
+      <%= form.label :post_title_id, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+      <%= form.select :post_title_id, PostTitle.all.collect{ |p| [ p.name, p.id ] }, include_blank: true, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+    </div>
+
+    <div>
+      <%= form.label :post_name, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+      <%= form.text_field :post_name, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+    </div>
+
+    <div>
+      <%= form.label :supervisor_id, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+      <%= form.select :supervisor_id, Post.all.collect{ |p| [ p.post_name, p.id ] }, include_blank: true, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+    </div>
+
+    <div>
+      <%= form.label :organization_type_id, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+      <%= form.select :organization_type_id, OrganizationType.all.collect{ |p| [ p.name, p.id ] }, include_blank: true, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+    </div>
+
+    <div>
+      <%= form.label :post_level, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+      <%= form.number_field :post_level, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+    </div>
+
+    <div class="inline">
+      <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    </div>
+  </div>  
+  <% end %>
+</div>

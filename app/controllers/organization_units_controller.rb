@@ -25,9 +25,20 @@ class OrganizationUnitsController < ApplicationController
 
     respond_to do |format|
       if @organization_unit.save
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.update('new_organization_unit', partial: "organization_units/form", locals: { organization_unit: OrganizationUnit.new }),
+            turbo_stream.prepend('organization_units', partial: "organization_units/organization_unit", locals: { organization_unit: @organization_unit })
+          ]
+          end
+
         format.html { redirect_to organization_unit_url(@organization_unit), notice: "Organization Unit was successfully created." }
         format.json { render :show, status: :created, location: @organization_unit }
       else
+        format.turbo_stream do
+          render turbo_stream:
+            turbo_stream.update('new_organization_unit', partial: "organization_units/form", locals: { organization_unit: @organization_unit })
+        end
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @organization_unit.errors, status: :unprocessable_entity }
       end

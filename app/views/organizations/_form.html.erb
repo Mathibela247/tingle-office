@@ -1,0 +1,52 @@
+<%= form_with(model: organization, class: "contents") do |form| %>
+  <% if organization.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(organization.errors.count, "error") %> prohibited this organization from being saved:</h2>
+
+      <ul>
+        <% organization.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+      <%= form.label :organization_type_id %>
+      <%= form.select :organization_type_id, OrganizationType.all.collect{ |p| [ p.name, p.id ] }, include_blank: true %>
+    </div>
+
+  <div class="my-5">
+    <%= form.label :contact_person %>
+    <%= form.text_field :contact_person, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :physical_address %>
+    <%= form.text_area :physical_address, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :city %>
+    <%= form.text_field :city, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :province %>
+    <%= form.text_field :province, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :telephone %>
+    <%= form.text_field :telephone, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+<% end %>
